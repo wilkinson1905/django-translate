@@ -1,5 +1,10 @@
 from django.shortcuts import render
 import requests
+from pathlib import Path
+import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 # Create your views here.
 
@@ -7,7 +12,7 @@ import requests
 def translate(request):
     if request.method == "POST":
         text = request.POST["input_area"]
-        with open("API_KEY.txt") as f:
+        with open(os.path.join(BASE_DIR, "API_KEY.txt")) as f:
             API_KEY = f.read()
         params = {
             "auth_key": API_KEY,
